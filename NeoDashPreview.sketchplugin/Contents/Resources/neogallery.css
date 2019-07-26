@@ -1,0 +1,175 @@
+{
+  font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  color: #373737;
+}
+.hidden{
+  display: none !important;
+}
+#title {
+  font-size: 24px;
+  text-align: center;
+  margin: 25px 0px 10px 0px;
+}
+#neogallery {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+  height: 100%;
+  overflow-y: scroll;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.control {
+  z-index: 60;
+  position: absolute;
+  height: 100%;
+  width: 10%;
+  top: 0;
+  cursor: pointer;
+}
+.control svg{
+  position: absolute;
+  top: 50%;
+  opacity: 0.1;
+}
+.control:hover svg{
+  opacity: 1;
+}
+.next svg {
+    right: 40px;
+}
+.previous svg {
+    left: 40px;
+}
+.next{
+  right: 0;
+}
+.control.next:hover {
+    background: linear-gradient(-90deg, #79797963,rgba(0, 0, 0, 0));
+}
+.control.previous:hover {
+    background: linear-gradient(90deg, #79797963,rgba(0, 0, 0, 0));
+}
+.createdon {
+  font-size: 16px;
+  color: #000;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 10px;
+}
+#tabs {
+    text-align: center;
+}
+#tabs li {
+  list-style: none;
+  display: inline-block;
+  padding: 10px 5px 12px;
+  margin: 30px 15px 0;
+  color: #ccc;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 200;
+}
+#tabs li.active {
+  border-bottom: 3px solid #1eaeeb;
+  color: #000;
+}
+.transition {
+transition: .3s cubic-bezier(.3, 0, 0, 1.3)
+}
+.pairHolder {
+  display: inline-block;
+  max-width: 1000px;
+}
+div#maxedImage {
+  display: flex;
+}
+#maxedImage >.pairHolder{
+   margin: auto;
+}
+#maxedImage >.pairHolder >.itemtitle {
+  text-align: center;
+  font-size: 24px;
+  margin: 30px 0;
+}
+.itemtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.pairHolder.landscape .imageHolder{
+  width: 866px;
+  height: 430px;
+  margin-bottom: 25px;
+  display: inline-block;
+  position: relative;
+
+  background-image: url(/bi/webapp/images/horizontal-frame.png);
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-size: contain;
+}
+.pairHolder.potrait .imageHolder {
+  display: inline-block;
+  position: relative;
+  transition: .3s;
+  width: 430px;
+  height: 866px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+
+
+  background-image: url(/bi/webapp/images/vertical-frame.png);
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-size: contain;
+}
+
+.pairHolder.potrait .imageHolder > .img-container{
+  max-height: 95%;
+  overflow: auto;
+  border-radius: 40px;
+  position: absolute;
+  top: 26px;
+  left: 27px;
+}
+.pairHolder.landscape .imageHolder > .img-container{
+  max-height: 94%;
+  overflow: auto;
+  border-radius: 40px;
+  position: absolute;
+  top: 27px;
+  left: 26px;
+}
+
+.pairHolder.potrait .imageHolder >.notch{
+  position: absolute;
+  top: 19px;
+  left: 104px;
+  width: 224px;
+  height: 34px;
+  z-index: 3;
+}
+
+.pairHolder.landscape .imageHolder >.notch{
+  position: absolute;
+  left: 19px;
+  top: 104px;
+  width: 34px;
+  height: 224px;
+  z-index: 3;
+}
+.pairHolder.potrait .image {
+  width: 376px;
+  border-radius: 37px;
+}
+.pairHolder.landscape .image{
+  width: 812px;
+  border-radius: 37px;
+}
