@@ -1,4 +1,4 @@
-{
+*{
   font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
   margin: 0px;
   padding: 0px;
@@ -13,17 +13,19 @@
   margin: 25px 0px 10px 0px;
 }
 #neogallery {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 20px;
-  height: 100%;
-  overflow-y: scroll;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 1;
 }
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 .control {
   z-index: 60;
@@ -84,8 +86,11 @@ body {
 transition: .3s cubic-bezier(.3, 0, 0, 1.3)
 }
 .pairHolder {
-  display: inline-block;
-  max-width: 1000px;
+    display: inline-block;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
 }
 div#maxedImage {
   display: flex;
@@ -103,11 +108,22 @@ div#maxedImage {
   margin-bottom: 20px;
   font-size: 16px;
 }
+
+.pairHolder .itembdy{
+  display: flex;
+}
+
+.pairHolder.potrait .itembdy{
+  flex-direction: row;
+}
+
+.pairHolder.landscape .itembdy{
+  flex-direction: column;
+}
+
 .pairHolder.landscape .imageHolder{
   width: 866px;
   height: 430px;
-  margin-bottom: 25px;
-  display: inline-block;
   position: relative;
 
   background-image: url(/bi/webapp/images/horizontal-frame.png);
@@ -115,16 +131,17 @@ div#maxedImage {
   background-clip: border-box;
   background-size: contain;
 }
+.pairHolder.landscape .imageHolder:first-of-type{
+  margin-bottom: 1.5vh;
+}
+.pairHolder.potrait .imageHolder:first-of-type{
+  margin-right: 1.5vw;
+}
 .pairHolder.potrait .imageHolder {
-  display: inline-block;
   position: relative;
   transition: .3s;
   width: 430px;
   height: 866px;
-  margin-right: 50px;
-  margin-bottom: 50px;
-
-
   background-image: url(/bi/webapp/images/vertical-frame.png);
   background-repeat: no-repeat;
   background-clip: border-box;

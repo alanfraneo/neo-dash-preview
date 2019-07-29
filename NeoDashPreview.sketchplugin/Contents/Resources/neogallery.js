@@ -159,18 +159,20 @@ var NeoGallery = new function() {
           var expand = 'onclick="NeoGallery.maximizeImage(this)';
           return `<div id=${imageID} class='pairHolder ${orientation}' ${expandable?expand:""}">
                          <div class='itemtitle'>${itemTitle}</div>
-                          <div class='imageHolder'>
-                            <img src='${notchsrc}' class='notch' >
-                            <div class="img-container">
-                              <img src='${imgURL}' class='image' >
+                         <div class='itembdy'>
+                            <div class='imageHolder'>
+                              <img src='${notchsrc}' class='notch' >
+                              <div class="img-container">
+                                <img src='${imgURL}' class='image' >
+                              </div>
                             </div>
-                          </div>
-                          <div class='imageHolder'>
-                            <img src='${notchsrc}' class='notch' >
-                            <div class="img-container">
-                              <img src='${pairImageURL}' class='image' >
+                            <div class='imageHolder'>
+                              <img src='${notchsrc}' class='notch' >
+                              <div class="img-container">
+                                <img src='${pairImageURL}' class='image' >
+                              </div>
                             </div>
-                          </div>
+                        </div>
                         </div> `
       }else{
         return ''
