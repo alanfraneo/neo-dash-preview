@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 *{
-  font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 0px;
   padding: 0px;
   color: #373737;
 }
 .hidden{
   display: none !important;
+}
+#backbtn{
+  color: #1daeec;
+  margin-left: 5%;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
 }
 #title {
   font-size: 24px;

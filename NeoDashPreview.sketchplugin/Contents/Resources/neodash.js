@@ -53,7 +53,16 @@ var NeoGallery = new function() {
     this.renderGallery = function(json) {
         NeoGallery.renderTabs(json);
         var images = json.Images;
-        document.getElementById("title").innerHTML = `<div class='createdon'>Images uploaded on: ${json.createdDate}</div><div class='createdon'>Click on an image to see full screen</div>`;
+        var title = json.title;
+        if (title == undefined) {
+            title = document.location.pathname.substring(1);
+            title = decodeURI(title);
+        }
+        document.title = title;
+        document.getElementById("title").innerHTML = `<a id="backbtn" href="../">&lt; Back</a>
+        <div class='createdon title'>${title}</div>
+        <div class='createdon'>uploaded on: ${json.createdDate}</div>
+        <div class='createdon'>Click on an image to see full screen</div>`;
         document.body.innerHTML += `<div id="prevBtn" class="control previous hidden" onclick='NeoGallery.controls(this)'>${NeoGallery.getNextIcon(180)}</div>
                                     <div id="nextBtn" class="control next hidden" onclick='NeoGallery.controls(this)'>${NeoGallery.getNextIcon(0)}</div>`;
         document.body.style.backgroundColor = '#fff';

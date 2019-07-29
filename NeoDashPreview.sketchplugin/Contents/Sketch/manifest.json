@@ -9,31 +9,17 @@
     "commands" : [
     {
       "script" : "neo-preview.js",
-      "handler" : "exportAllPagesDefault",
+      "handler" : "exportAllPages8x",
       "shortcut" : "",
-      "name" : "Preview all pages",
-      "identifier" : "neo-preview-all"
+      "name" : "Preview all pages at 8x scale",
+      "identifier" : "neo-preview-all-8x"
     },
     {
       "script" : "neo-preview.js",
-      "handler" : "exportCurrentPageDefault",
+      "handler" : "exportCurrentPage8x",
       "shortcut" : "",
-      "name" : "Preview current page",
-      "identifier" : "neo-preview-page"
-    },
-    {
-      "script" : "neo-preview.js",
-      "handler" : "exportAllPages2x",
-      "shortcut" : "",
-      "name" : "Preview all pages at 2x scale",
-      "identifier" : "neo-preview-all-2x"
-    },
-    {
-      "script" : "neo-preview.js",
-      "handler" : "exportCurrentPage2x",
-      "shortcut" : "",
-      "name" : "Preview current page at 2x scale",
-      "identifier" : "neo-preview-page-2x"
+      "name" : "Preview current page at 8x scale",
+      "identifier" : "neo-preview-page-8x"
     }
   ]
 }

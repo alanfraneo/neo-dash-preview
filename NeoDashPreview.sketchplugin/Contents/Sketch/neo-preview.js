@@ -4,10 +4,10 @@
 
 /**
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
-the scaling of each artboard is forced to 2x.
+the scaling of each artboard is forced to 8x.
 */
-var exportAllPages2x = function (context) {
-  exportAllPages(context, '1x');
+var exportAllPages8x = function (context) {
+  exportAllPages(context, '8x');
 }
 /**
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
@@ -23,6 +23,8 @@ var exportAllPages = function (context, scale) {
   var sketch = context.api();
   var app = sketch.Application();
   var doc = context.document;
+  var userDefaults = NSUserDefaults.alloc().initWithSuiteName("com.neogallery.sketch");
+  var title = getPageTitle(context, userDefaults);
   var pages = doc.pages();
   var exportPath = getExportPath(doc);
   var imgConfigList = []
@@ -42,15 +44,15 @@ var exportAllPages = function (context, scale) {
       }
   }
   
-  createAndOpenHTML(imgConfigList, exportPath, context, imgID.idcount);
+  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount);
   doc.setCurrentPage(currentPage); // since we change current page for exporting for each page, we reset here to original current page.
 };
 /**
 function for exporting all artboards from current page.
-the scaling of each artboard is forced to 2x.
+the scaling of each artboard is forced to 8x.
 */
-var exportCurrentPage2x = function (context, scale) {
-  exportCurrentPage(context, '2x');
+var exportCurrentPage8x = function (context, scale) {
+  exportCurrentPage(context, '8x');
 }
 /**
 function for exporting all artboards from current page.
@@ -66,13 +68,15 @@ var exportCurrentPage = function (context, scale) {
   var sketch = context.api();
   var app = sketch.Application();
   var doc = context.document;
+  var userDefaults = NSUserDefaults.alloc().initWithSuiteName("com.neogallery.sketch");
+  var title = getPageTitle(context, userDefaults);
   var exportPath = getExportPath(doc);
   var imgConfigList = [];
   var page = doc.currentPage();
   var imgID = {'idcount': 0};
   var imgConfigListForPage = exportArtboardsOfPage(sketch, doc, scale, page, exportPath, imgID);
   imgConfigList.push(imgConfigListForPage);
-  createAndOpenHTML(imgConfigList, exportPath, context, imgID.idcount);
+  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount);
 };
 /**
 function for deleting old export folder and creating a new one
@@ -125,13 +129,9 @@ var exportArtboardsOfPage = function (sketch, doc, scale, page, exportPath, imgI
   return imgConf;
 }
 
-var getImgURL = function(imgURL){
-  return NeoGallery.fullImageList.filter(function(image){return image.imageID == imgId})[0].imageURL;
-};
-
 var getArtboardScale = function (artboard, scale) {
-  if (scale == '2x') {
-    return '2';
+  if (scale == '8x') {
+    return '8';
   }else if(scale == 'default'){
     //read from artboards top most export config
     return String(artboard.exportOptions().exportFormats()[0]).split('  ')[0];
@@ -142,8 +142,8 @@ var getArtboardScale = function (artboard, scale) {
 /**
   function for creating the HTML using the img list, once created it will automatically open the file using default browser
 */
-var createAndOpenHTML = function (imgConfigList, exportPath, context, imageCount) {
-  var config = {"Images" : imgConfigList, "imageCount": imageCount, "createdDate": currentDate()}
+var createAndOpenHTML = function (imgConfigList, exportPath, context, title, imageCount) {
+  var config = {"Images" : imgConfigList, "imageCount": imageCount, "createdDate": currentDate(), "title": title}
   var htmlString = GridHTML.getHTML(context, JSON.stringify(config));
   var someString = [NSString stringWithFormat:"%@", htmlString], filePath = exportPath+"index.html";
   [someString writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
@@ -173,3 +173,20 @@ var scaleArtboard = function(layer, artboardscale) {
     request.scale = artboardscale;
     return request
  };
+
+ var getSavedPagetitle = function(userDefaults){
+  var pageTitle = userDefaults.objectForKey("pagetitle");
+  if(pageTitle != undefined){
+    return pageTitle
+  } else {
+    return "NeoGallery"; // Default value
+  }
+}
+
+var getPageTitle = function(context, userDefaults){
+  var UI = require('sketch/ui');
+  var pageTitle = UI.getStringFromUser("Enter your page title", getSavedPagetitle(userDefaults));
+  [userDefaults setObject:pageTitle forKey:"pagetitle"]; // Save to user defaults
+  userDefaults.synchronize();
+  return pageTitle;
+}
