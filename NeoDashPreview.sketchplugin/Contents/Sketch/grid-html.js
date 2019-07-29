@@ -5,12 +5,12 @@ GridHTML.getHTML = function (context, config) {
   var neogalleryjs = GridHTML.getJS(context);
   var html =
     '<!DOCTYPE HTML><html><head><meta charset=utf-8><title>NeoGallery</title>\
-    	<style>'+neogallerycss+'</style>\
+      <link href="/bi/webapp/css/neodash.css" rel="stylesheet" type="text/css" />\
       </head><body><div id="title"></div>\
       <div id="tabs"></div>\
       <div id="neogallery"></div></body>\
-    	<script>var imgconfig = '+config+';\
-      '+neogalleryjs+'</script>\
+    	<script>var imgconfig = '+config+';</script>\
+      <script src="/bi/webapp/js/neodash.js"></script>\
      </html>';
   return html;
 };
@@ -18,13 +18,13 @@ GridHTML.getHTML = function (context, config) {
 
 GridHTML.getCSS = function (context) {
   var sketch = context.api();
-  var cssURL = sketch.resourceNamed('neogallery.css');
+  var cssURL = sketch.resourceNamed('neodash.css');
   return GridHTML.readTextFromFile(cssURL);
 }
 
 GridHTML.getJS = function (context) {
   var sketch = context.api();
-  var jsURL = sketch.resourceNamed('neogallery.js');
+  var jsURL = sketch.resourceNamed('neodash.js');
   return GridHTML.readTextFromFile(jsURL);
 }
 
