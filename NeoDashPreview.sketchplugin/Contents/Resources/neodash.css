@@ -13,12 +13,13 @@
   margin: 25px 0px 10px 0px;
 }
 #neogallery {
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
     flex: 1;
 }
-body {
+body { 
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -108,36 +109,31 @@ div#maxedImage {
   margin-bottom: 20px;
   font-size: 16px;
 }
-
 .pairHolder .itembdy{
   display: flex;
 }
-
 .pairHolder.potrait .itembdy{
   flex-direction: row;
 }
-
 .pairHolder.landscape .itembdy{
   flex-direction: column;
 }
-
-.pairHolder.landscape .imageHolder{
+.pairHolder.landscape .imageHolder{ 
   width: 866px;
   height: 430px;
   position: relative;
-
   background-image: url(/bi/webapp/images/horizontal-frame.png);
   background-repeat: no-repeat;
   background-clip: border-box;
   background-size: contain;
 }
-.pairHolder.landscape .imageHolder:first-of-type{
+.pairHolder.landscape .imageHolder:first-of-type{ 
   margin-bottom: 1.5vh;
 }
-.pairHolder.potrait .imageHolder:first-of-type{
+.pairHolder.potrait .imageHolder:first-of-type{ 
   margin-right: 1.5vw;
 }
-.pairHolder.potrait .imageHolder {
+.pairHolder.potrait .imageHolder { 
   position: relative;
   transition: .3s;
   width: 430px;
@@ -164,7 +160,6 @@ div#maxedImage {
   top: 27px;
   left: 26px;
 }
-
 .pairHolder.potrait .imageHolder >.notch{
   position: absolute;
   top: 19px;
@@ -172,8 +167,7 @@ div#maxedImage {
   width: 224px;
   height: 34px;
   z-index: 3;
-}
-
+} 
 .pairHolder.landscape .imageHolder >.notch{
   position: absolute;
   left: 19px;
