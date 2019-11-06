@@ -39,7 +39,7 @@ var exportAllPages = function (context, scale) {
       else{
         pagenames.push(page.name())
         doc.setCurrentPage(page);
-        var imgConfigListForPage = exportArtboardsOfPage(doc, scale, page, exportPath, imgID);
+        var imgConfigListForPage = exportArtboardsOfPage(sketch, doc, scale, page, exportPath, imgID);
         imgConfigList.push(imgConfigListForPage);
       }
   }
