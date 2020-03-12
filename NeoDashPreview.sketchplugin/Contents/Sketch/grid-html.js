@@ -1,12 +1,10 @@
 var GridHTML = {};
 
-GridHTML.getHTML = function (context, config) {
-  var neogallerycss = GridHTML.getCSS(context);
-  var neogalleryjs = GridHTML.getJS(context);
+GridHTML.getHTML = function (context, config, platform) {
   var html =
     '<!DOCTYPE HTML><html><head><meta charset=utf-8><title>NeoGallery</title>\
       <link href="/bi/webapp/css/neodash.css" rel="stylesheet" type="text/css" />\
-      </head><body><div id="title"></div>\
+      </head><body class='+platform+'><div id="title"></div>\
       <div id="tabs"></div>\
       <div id="neogallery"></div></body>\
     	<script>var imgconfig = '+config+';</script>\

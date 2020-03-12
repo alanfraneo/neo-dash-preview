@@ -6,20 +6,35 @@
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
 the scaling of each artboard is forced to 8x.
 */
-var exportAllPages8x = function (context) {
-  exportAllPages(context, '8x');
+var exportAllPagesios8x = function (context) {
+  exportAllPages(context, '8x', 'ios');
 }
 /**
-function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
-the scaling of each artboard is taken from each artboards topmost export configuration.
+function for exporting all artboards from current page.
+the scaling of each artboard is forced to 8x.
 */
-var exportAllPagesDefault = function (context) {
-  exportAllPages(context, 'default');
+var exportCurrentPageios8x = function (context) {
+  exportCurrentPage(context, '8x', 'ios');
 }
+/**
+function for exporting all artboards from current page.
+the scaling of each artboard is forced to 8x.
+*/
+var exportAllPage8x = function (context) {
+  exportCurrentPage(context, '8x', 'generic');
+}
+/**
+function for exporting all artboards from current page.
+the scaling of each artboard is forced to 8x.
+*/
+var exportCurrentPage8x = function (context) {
+  exportCurrentPage(context, '8x', 'generic');
+}
+
 /**
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
 */
-var exportAllPages = function (context, scale) {
+var exportAllPages = function (context, scale, platform) {
   var sketch = context.api();
   var app = sketch.Application();
   var doc = context.document;
@@ -44,27 +59,13 @@ var exportAllPages = function (context, scale) {
       }
   }
   
-  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount);
+  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount, platform);
   doc.setCurrentPage(currentPage); // since we change current page for exporting for each page, we reset here to original current page.
 };
 /**
 function for exporting all artboards from current page.
-the scaling of each artboard is forced to 8x.
 */
-var exportCurrentPage8x = function (context, scale) {
-  exportCurrentPage(context, '8x');
-}
-/**
-function for exporting all artboards from current page.
-the scaling of each artboard is taken from each artboards topmost export configuration.
-*/
-var exportCurrentPageDefault = function (context, scale) {
-  exportCurrentPage(context, 'default');
-}
-/**
-function for exporting all artboards from current page.
-*/
-var exportCurrentPage = function (context, scale) {
+var exportCurrentPage = function (context, scale, platform) {
   var sketch = context.api();
   var app = sketch.Application();
   var doc = context.document;
@@ -76,7 +77,7 @@ var exportCurrentPage = function (context, scale) {
   var imgID = {'idcount': 0};
   var imgConfigListForPage = exportArtboardsOfPage(sketch, doc, scale, page, exportPath, imgID);
   imgConfigList.push(imgConfigListForPage);
-  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount);
+  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount, platform);
 };
 /**
 function for deleting old export folder and creating a new one
@@ -144,9 +145,9 @@ var getArtboardScale = function (artboard, scale) {
 /**
   function for creating the HTML using the img list, once created it will automatically open the file using default browser
 */
-var createAndOpenHTML = function (imgConfigList, exportPath, context, title, imageCount) {
+var createAndOpenHTML = function (imgConfigList, exportPath, context, title, imageCount, platform) {
   var config = {"Images" : imgConfigList, "imageCount": imageCount, "createdDate": currentDate(), "title": title}
-  var htmlString = GridHTML.getHTML(context, JSON.stringify(config));
+  var htmlString = GridHTML.getHTML(context, JSON.stringify(config), platform);
   var someString = [NSString stringWithFormat:"%@", htmlString], filePath = exportPath+"index.html";
   [someString writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
   var file = NSURL.fileURLWithPath(filePath);

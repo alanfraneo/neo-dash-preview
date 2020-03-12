@@ -9,16 +9,30 @@
     "commands" : [
     {
       "script" : "neo-preview.js",
+      "handler" : "exportAllPagesios8x",
+      "shortcut" : "",
+      "name" : "Preview all pages at 8x - iOS",
+      "identifier" : "neo-preview-all-ios-8x"
+    },
+    {
+      "script" : "neo-preview.js",
+      "handler" : "exportCurrentPageios8x",
+      "shortcut" : "",
+      "name" : "Preview current page at 8x - iOS",
+      "identifier" : "neo-preview-page-ios-8x"
+    },
+    {
+      "script" : "neo-preview.js",
       "handler" : "exportAllPages8x",
       "shortcut" : "",
-      "name" : "Preview all pages at 8x scale",
+      "name" : "Preview all pages at 8x",
       "identifier" : "neo-preview-all-8x"
     },
     {
       "script" : "neo-preview.js",
       "handler" : "exportCurrentPage8x",
       "shortcut" : "",
-      "name" : "Preview current page at 8x scale",
+      "name" : "Preview current page at 8x",
       "identifier" : "neo-preview-page-8x"
     }
   ]

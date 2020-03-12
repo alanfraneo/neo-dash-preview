@@ -132,10 +132,13 @@ div#maxedImage {
   width: 866px;
   height: 430px;
   position: relative;
+}
+.ios .pairHolder.landscape .imageHolder{
   background-image: url(/bi/webapp/images/horizontal-frame.png);
   background-repeat: no-repeat;
   background-clip: border-box;
   background-size: contain;
+
 }
 .pairHolder.landscape .imageHolder:first-of-type{ 
   margin-bottom: 1.5vh;
@@ -143,18 +146,20 @@ div#maxedImage {
 .pairHolder.potrait .imageHolder:first-of-type{ 
   margin-right: 1.5vw;
 }
-.pairHolder.potrait .imageHolder { 
+.pairHolder.potrait .imageHolder {
   position: relative;
   transition: .3s;
   width: 430px;
   height: 866px;
+}
+.ios .pairHolder.potrait .imageHolder{
   background-image: url(/bi/webapp/images/vertical-frame.png);
   background-repeat: no-repeat;
   background-clip: border-box;
   background-size: contain;
 }
 
-.pairHolder.potrait .imageHolder > .img-container{
+.ios .pairHolder.potrait .imageHolder > .img-container{
   max-height: 95%;
   overflow: auto;
   border-radius: 40px;
@@ -162,7 +167,7 @@ div#maxedImage {
   top: 26px;
   left: 27px;
 }
-.pairHolder.landscape .imageHolder > .img-container{
+.ios .pairHolder.landscape .imageHolder > .img-container{
   max-height: 94%;
   overflow: auto;
   border-radius: 40px;
@@ -170,7 +175,10 @@ div#maxedImage {
   top: 27px;
   left: 26px;
 }
-.pairHolder.potrait .imageHolder >.notch{
+.generic .notch{
+  display: none;
+}
+.ios .pairHolder.potrait .imageHolder >.notch{
   position: absolute;
   top: 19px;
   left: 104px;
@@ -178,7 +186,7 @@ div#maxedImage {
   height: 34px;
   z-index: 3;
 } 
-.pairHolder.landscape .imageHolder >.notch{
+.ios .pairHolder.landscape .imageHolder >.notch{
   position: absolute;
   left: 19px;
   top: 104px;
@@ -188,9 +196,17 @@ div#maxedImage {
 }
 .pairHolder.potrait .image {
   width: 376px;
+  border: 1px solid #ccc;
+}
+.ios .pairHolder.potrait .image{
   border-radius: 37px;
+  border: none;
 }
 .pairHolder.landscape .image{
   width: 812px;
+  border: 1px solid #ccc;
+}
+.ios .pairHolder.landscape .image{
   border-radius: 37px;
+  border: none;
 }
