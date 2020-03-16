@@ -20,7 +20,7 @@ var exportCurrentPageios8x = function (context) {
 function for exporting all artboards from current page.
 the scaling of each artboard is forced to 8x.
 */
-var exportAllPage8x = function (context) {
+var exportAllPages8x = function (context) {
   exportCurrentPage(context, '8x', 'generic');
 }
 /**
