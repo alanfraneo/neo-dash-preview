@@ -21,7 +21,7 @@ function for exporting all artboards from current page.
 the scaling of each artboard is forced to 8x.
 */
 var exportAllPages8x = function (context) {
-  exportCurrentPage(context, '8x', 'generic');
+  exportAllPages(context, '8x', 'generic');
 }
 /**
 function for exporting all artboards from current page.
