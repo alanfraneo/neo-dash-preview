@@ -1,43 +1,41 @@
 @import './fs-utils.js';
 @import './grid-html.js';
-// const fs = require('fs');
 
 /**
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
 the scaling of each artboard is forced to 8x.
 */
 var exportAllPagesios8x = function (context) {
-  exportAllPages(context, 8, 'ios');
+  exportAllPages(8, 'ios');
 }
 /**
 function for exporting all artboards from current page.
 the scaling of each artboard is forced to 8x.
 */
 var exportCurrentPageios8x = function (context) {
-  exportCurrentPage(context, 8, 'ios');
+  exportCurrentPage(8, 'ios');
 }
 /**
 function for exporting all artboards from current page.
 the scaling of each artboard is forced to 8x.
 */
 var exportAllPages8x = function (context) {
-  exportAllPages(context, 8, 'generic');
+  exportAllPages(8, 'generic');
 }
 /**
 function for exporting all artboards from current page.
 the scaling of each artboard is forced to 8x.
 */
 var exportCurrentPage8x = function (context) {
-  exportCurrentPage(context, 8, 'generic');
+  exportCurrentPage(8, 'generic');
 }
 
 /**
 function for exporting all artboards from all pages except, Symbols, Styles and pages beginning with _
 */
-var exportAllPages = function (context, scale, platform) {
+var exportAllPages = function (scale, platform) {
   var doc = require('sketch/dom').getSelectedDocument();
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName("com.neogallery.sketch.dashpreview");
-  var title = getPageTitle(context, userDefaults);
+  var title = getPageTitle();
   var pages = doc.pages;
   var exportPath = getExportPath(doc);
   var imgConfigList = []
@@ -54,23 +52,22 @@ var exportAllPages = function (context, scale, platform) {
         imgConfigList.push(imgConfigListForPage);
       }
   }
-  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount, platform);
+  createAndOpenHTML(imgConfigList, exportPath, title, imgID.idcount, platform);
 };
 
 /**
 function for exporting all artboards from current page.
 */
-var exportCurrentPage = function (context, scale, platform) {
+var exportCurrentPage = function (scale, platform) {
   var doc = require('sketch/dom').getSelectedDocument();
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName("com.neogallery.sketch.dashpreview");
-  var title = getPageTitle(context, userDefaults);
+  var title = getPageTitle();
   var exportPath = getExportPath(doc);
   var imgConfigList = [];
   var page = doc.selectedPage;
   var imgID = {'idcount': 0};
   var imgConfigListForPage = exportArtboardsOfPage(scale, page, exportPath, imgID);
   imgConfigList.push(imgConfigListForPage);
-  createAndOpenHTML(imgConfigList, exportPath, context, title, imgID.idcount, platform);
+  createAndOpenHTML(imgConfigList, exportPath, title, imgID.idcount, platform);
 };
 
 /**
@@ -136,12 +133,11 @@ var exportArtboardsOfPage = function (scale, page, exportPath, imgID) {
 /**
   function for creating the HTML using the img list, once created it will automatically open the file using default browser
 */
-var createAndOpenHTML = function (imgConfigList, exportPath, context, title, imageCount, platform) {
+var createAndOpenHTML = function (imgConfigList, exportPath, title, imageCount, platform) {
   var config = {"Images" : imgConfigList, "imageCount": imageCount, "createdDate": currentDate(), "title": title}
   var htmlString = GridHTML.getHTML(JSON.stringify(config), platform);
   var someString = [NSString stringWithFormat:"%@", htmlString], filePath = exportPath+"index.html";
   [someString writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
-  var file = NSURL.fileURLWithPath(filePath);
   var UI = require('sketch/ui')
   UI.message("Artboards are exported in 'neogallery' folder next to your sketch file.");
 }
