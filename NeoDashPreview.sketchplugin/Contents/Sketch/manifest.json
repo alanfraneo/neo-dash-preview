@@ -1,7 +1,7 @@
 {
     "name" : "NeoDashPreview",
     "identifier" : "com.sketchapp.neo.dashpreview",
-    "version" : "1.1",
+    "version" : "1.2",
     "description" : "Open artboards in browser as images",
     "homepage": "https://github.com/alanfraneo/neo-dash-preview/",
     "appcast": "",

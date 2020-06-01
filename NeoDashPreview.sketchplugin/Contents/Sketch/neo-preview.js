@@ -74,7 +74,7 @@ var exportCurrentPage = function (scale, platform) {
 function for deleting old export folder and creating a new one
 */
 var getExportPath = function (doc) {
-  var docLocation = doc.path.split('/').slice(0,-1).join('/');
+  var docLocation = decodeURI(doc.path).split('/').slice(0,-1).join('/');
   var exportPath = docLocation + "/neogallery/";
   var imageExportPath = exportPath + "img/";
   FSUtil.deleteAndCreateFolder(exportPath);
