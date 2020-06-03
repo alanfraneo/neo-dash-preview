@@ -173,6 +173,6 @@ var getPageTitle = function(){
       }
       pageTitle = value;
       settings.setSettingForKey("neodashpreview-pagetitle", pageTitle); // Save to user preferences
-      return pageTitle;
   });
+  return pageTitle;
 }
